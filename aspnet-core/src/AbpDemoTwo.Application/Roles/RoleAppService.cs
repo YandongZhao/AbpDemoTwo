@@ -29,7 +29,11 @@ namespace AbpDemoTwo.Roles
             _roleManager = roleManager;
             _userManager = userManager;
         }
-
+        /// <summary>
+        /// 创建用户
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public override async Task<RoleDto> Create(CreateRoleDto input)
         {
             CheckCreatePermission();
@@ -49,6 +53,11 @@ namespace AbpDemoTwo.Roles
             return MapToEntityDto(role);
         }
 
+        /// <summary>
+        /// 获取角色列表
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task<ListResultDto<RoleListDto>> GetRolesAsync(GetRolesInput input)
         {
             var roles = await _roleManager
@@ -62,6 +71,11 @@ namespace AbpDemoTwo.Roles
             return new ListResultDto<RoleListDto>(ObjectMapper.Map<List<RoleListDto>>(roles));
         }
 
+        /// <summary>
+        /// 更新角色
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public override async Task<RoleDto> Update(RoleDto input)
         {
             CheckUpdatePermission();
@@ -82,6 +96,11 @@ namespace AbpDemoTwo.Roles
             return MapToEntityDto(role);
         }
 
+        /// <summary>
+        /// 删除角色
+        /// </summary>
+        /// <param name="input">主键</param>
+        /// <returns>无</returns>
         public override async Task Delete(EntityDto<int> input)
         {
             CheckDeletePermission();
